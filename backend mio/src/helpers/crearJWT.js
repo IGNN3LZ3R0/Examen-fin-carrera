@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
-const generarJWT = (id, rol) => {
+const crearJWT = (id, rol) => {
   return jwt.sign({ id, rol }, process.env.JWT_SECRET, { expiresIn: "12h" });
 };
 
-export default generarJWT;
+export default crearJWT;

@@ -7,6 +7,7 @@ import routerusuario from "./routers/usuarioroutes.js"
 // Inicializaciones
 const app = express()
 dotenv.config()
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 // Configuraciones 
 app.set('port',process.env.port || 3000)
