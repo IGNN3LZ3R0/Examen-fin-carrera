@@ -5,8 +5,8 @@ import cors from 'cors';
 import routerusuario from "./routers/usuarioroutes.js"
 
 // Inicializaciones
-const app = express()
-dotenv.config()
+const app = express();
+dotenv.config();
 console.log("JWT_SECRET:", process.env.JWT_SECRET);
 
 // Configuraciones 
