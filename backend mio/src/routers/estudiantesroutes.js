@@ -2,11 +2,11 @@ import express from 'express';
 import {
     CrearEstudiante,
     VerEstudiante,
-    detalleEstudiante,
     ActualizarEstudiante,
     EliminarEstudiante,
+    detalleEstudiante,
     mostrarBienvenida
-} from '../controllers/estudiantescontroller.js'; // Asegúrate de que el nombre del archivo sea correcto
+}from '../controllers/estudiantescontroller.js'; // Asegúrate de que el nombre del archivo sea correcto
 import verificarJWT from '../middlewares/verificarJWT.js';
 const router = express.Router();
 // Ruta para la bienvenida

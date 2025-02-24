@@ -1,6 +1,6 @@
 import mongoose, {Schema, model} from "mongoose";
 
-const MatriculaSchema = new Schema({
+const matriculasSchema = new Schema({
     codigo:{
         type:String,
         require:true,
@@ -28,4 +28,4 @@ const MatriculaSchema = new Schema({
     timestamps:true
 })
 
-export default model("Matriculas", MatriculaSchema)
+export default model("matriculas", matriculasSchema)
