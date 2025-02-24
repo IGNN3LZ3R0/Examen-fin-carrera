@@ -4,6 +4,8 @@ import dotenv from 'dotenv'
 import cors from 'cors';
 import routerusuario from "./routers/usuarioroutes.js"
 import routermateria from "./routers/materiasroutes.js"
+import routerestudiantes from './routers/estudiantesroutes.js';
+import routermatriculas from './routers/matriculasroutes.js'
 
 // Inicializaciones
 const app = express();
@@ -24,6 +26,8 @@ app.get('/',(req,res)=>{
 
 app.use("/caso1", routerusuario)
 app.use("/caso1", routermateria)
+app.use("/caso1", routerestudiantes)
+app.use("/caso1", routermatriculas)
 
 
 
