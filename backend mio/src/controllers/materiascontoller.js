@@ -1,11 +1,6 @@
 import { mongoose } from "mongoose";
 import Materias from "../models/materias.js";
 
-// Mensaje de bienvenida
-const bienvenida = (req, res) => {
-    res.send(`Bienvenido - ${req.user?.nombre || "Usuario"}`);
-};
-
 // Crear una nueva materia
 const crearMateria = async (req, res) => {
     try {
@@ -95,7 +90,6 @@ const eliminarMateria = async (req, res) => {
 };
 
 export {
-    bienvenida,
     crearMateria,
     obtenerMaterias,
     detalleMateria,

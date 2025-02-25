@@ -1,6 +1,5 @@
 import express from 'express';
 import {
-    bienvenida,
     crearMateria,
     obtenerMaterias,
     detalleMateria,
@@ -10,11 +9,14 @@ import {
 import verificarJWT from '../middlewares/verificarJWT.js';
 const router = express.Router();
 // Ruta para la bienvenida
-router.get('/materias/welcome', verificarJWT, bienvenida);
+// Ruta de bienvenida
+router.get('/matriculas/bienvenido', verificarJWT, (req, res) => {
+    res.json({ msg: `Bienvenido - ${req.user.nombre}` });
+});
 // Rutas CRUD para materias
-router.post('/materias', verificarJWT, crearMateria);
-router.get('/materias', verificarJWT, obtenerMaterias); // Obtener todas las materias
-router.get('/materias/:id', verificarJWT, detalleMateria); // Obtener detalle de una materia
-router.put('/materias/:id', verificarJWT, actualizarMateria);
-router.delete('/materias/:id', verificarJWT, eliminarMateria);
+router.post('/materias/crear', verificarJWT, crearMateria);
+router.get('/materias/ver', verificarJWT, obtenerMaterias); // Obtener todas las materias
+router.get('/materias/ver/:id', verificarJWT, detalleMateria); // Obtener detalle de una materia
+router.put('/materias/actualizar/:id', verificarJWT, actualizarMateria);
+router.delete('/materias/eliminar/:id', verificarJWT, eliminarMateria);
 export default router;

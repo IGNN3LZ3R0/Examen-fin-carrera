@@ -5,7 +5,7 @@ import verificarJWT from '../middlewares/verificarJWT.js';
 const router = express.Router();
 
 // Ruta de bienvenida
-router.get('/matriculas/welcome', verificarJWT, (req, res) => {
+router.get('/matriculas/bienvenido', verificarJWT, (req, res) => {
     res.json({ msg: `Bienvenido - ${req.user.nombre}` });
 });
 

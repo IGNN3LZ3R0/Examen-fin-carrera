@@ -5,16 +5,18 @@ import {
     ActualizarEstudiante,
     EliminarEstudiante,
     detalleEstudiante,
-    mostrarBienvenida
 }from '../controllers/estudiantescontroller.js'; // Asegúrate de que el nombre del archivo sea correcto
 import verificarJWT from '../middlewares/verificarJWT.js';
 const router = express.Router();
 // Ruta para la bienvenida
-router.get('/estudiantes/welcome', verificarJWT, mostrarBienvenida);
+// Ruta de bienvenida
+router.get('/matriculas/bienvenido', verificarJWT, (req, res) => {
+    res.json({ msg: `Bienvenido - ${req.user.nombre}` });
+});
 // Rutas CRUD para estudiantes
-router.post('/estudiantes', verificarJWT, CrearEstudiante); // Crear un nuevo estudiante
-router.get('/estudiantes', verificarJWT, VerEstudiante); // Obtener todos los estudiantes
-router.get('/estudiantes/:id', verificarJWT, detalleEstudiante); // Obtener detalle de un estudiante
-router.put('/estudiantes/:id', verificarJWT, ActualizarEstudiante); // Actualizar información de un estudiante
-router.delete('/estudiantes/:id', verificarJWT, EliminarEstudiante); // Eliminar un estudiante
+router.post('/estudiantes/crear', verificarJWT, CrearEstudiante); // Crear un nuevo estudiante
+router.get('/estudiantes/ver', verificarJWT, VerEstudiante); // Obtener todos los estudiantes
+router.get('/estudiantes/ver/:id', verificarJWT, detalleEstudiante); // Obtener detalle de un estudiante
+router.put('/estudiantes/actualizar/:id', verificarJWT, ActualizarEstudiante); // Actualizar información de un estudiante
+router.delete('/estudiantes/eliminar/:id', verificarJWT, EliminarEstudiante); // Eliminar un estudiante
 export default router;

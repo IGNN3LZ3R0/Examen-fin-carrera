@@ -87,13 +87,6 @@ const EliminarEstudiante = async (req, res) => {
     res.status(200).json({ msg: "El registro del estudiante ha sido eliminado exitosamente" });
 };
 
-// Middleware para mostrar mensaje de bienvenida
-const mostrarBienvenida = (req, res, next) => {
-    if (req.user) {
-        res.locals.bienvenida = `Bienvenido - ${req.user.nombre}`;
-    }
-    next();
-};
 
 export {
     CrearEstudiante,
@@ -101,5 +94,4 @@ export {
     ActualizarEstudiante,
     EliminarEstudiante,
     detalleEstudiante,
-    mostrarBienvenida
 };
