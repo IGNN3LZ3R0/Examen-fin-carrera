@@ -9,6 +9,7 @@ router.get('/matriculas/welcome', verificarJWT, (req, res) => {
     res.json({ msg: `Bienvenido - ${req.user.nombre}` });
 });
 
+
 // Rutas CRUD para matrículas
 router.post('/matriculas', verificarJWT, crearMatricula);
 router.get('/matriculas', verificarJWT, verMatricula); // Obtener todas las matrículas
