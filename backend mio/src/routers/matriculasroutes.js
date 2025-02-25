@@ -11,10 +11,10 @@ router.get('/matriculas/welcome', verificarJWT, (req, res) => {
 
 
 // Rutas CRUD para matrículas
-router.post('/matriculas', verificarJWT, crearMatricula);
-router.get('/matriculas', verificarJWT, verMatricula); // Obtener todas las matrículas
-router.get('/matriculas/:id', verificarJWT, detalleMatricula); // Obtener detalle de una matrícula
-router.put('/matriculas/:id', verificarJWT, actualizarMatricula);
-router.delete('/matriculas/:id', verificarJWT, eliminarMatricula);
+router.post('/matriculas/crear', verificarJWT, crearMatricula);
+router.get('/matriculas/ver', verificarJWT, verMatricula); // Obtener todas las matrículas
+router.get('/matriculas/ver/:id', verificarJWT, detalleMatricula); // Obtener detalle de una matrícula
+router.put('/matriculas/actualizar/:id', verificarJWT, actualizarMatricula);
+router.delete('/matriculas/eliminar/:id', verificarJWT, eliminarMatricula);
 
 export default router;

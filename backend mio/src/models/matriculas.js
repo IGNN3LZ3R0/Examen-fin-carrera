@@ -1,31 +1,30 @@
-import mongoose, {Schema, model} from "mongoose";
-
+import mongoose, { Schema, model } from "mongoose";
 const matriculasSchema = new Schema({
-    codigo:{
-        type:String,
-        require:true,
-        maxlength:20
+    codigo: {
+        type: String,
+        required: true,
+        maxlength: 20
     },
-    descripcion:{
-        type:String,
-        require:true,
-        maxlength:50
+    descripcion: {
+        type: String,
+        required: true,
+        maxlength: 50
     },
-
     creditos: {
         type: Number,
-        require: true
+        required: true
     },
-
     estudiante: {
-        type: Object,
-        required: true },
-        
-    materia: {
-        type: [Object],
-        required: true },
-},{
-    timestamps:true
-})
-
-export default model("matriculas", matriculasSchema)
+        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
+        ref: 'estudiantes', // Nombre del modelo al que se refiere
+        required: true
+    },
+    materia: [{
+        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
+        ref: 'materias', // Nombre del modelo al que se refiere
+        required: true
+    }]
+}, {
+    timestamps: true
+});
+export default model("matriculas", matriculasSchema);
