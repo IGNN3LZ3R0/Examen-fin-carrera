@@ -1,6 +1,8 @@
 import Usuario from "../models/usuario.js";
 import crearJWT from "../helpers/crearJWT.js"; // Asegúrate de que el nombre sea correcto
 import mongoose from "mongoose";
+
+
 const registro = async (req, res) => {
     const { nombre, apellido, email, password } = req.body;
     // Validaciones y demás

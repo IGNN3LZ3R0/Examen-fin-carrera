@@ -6,6 +6,7 @@ const crearMateria = async (req, res) => {
     try {
         const { nombre, codigo, descripcion, creditos } = req.body;
         const nombreMin = nombre.toLowerCase();
+        
         // Verifica que todos los campos sean cadenas y no estén vacíos
         if (Object.values(req.body).some(value => 
             value === null || 
@@ -14,18 +15,22 @@ const crearMateria = async (req, res) => {
         )) {
             return res.status(400).json({ msg: "Debe llenar todos los campos" });
         }
+        
         const nombreExiste = await Materias.findOne({ nombre: nombreMin });
         if (nombreExiste) return res.status(400).json({ msg: "Ya existe una materia con ese nombre" });
         const codigoExiste = await Materias.findOne({ codigo });
         if (codigoExiste) return res.status(400).json({ msg: "Ya existe una materia con ese código" });
+        
         const permitidoNombre = /^[a-zA-ZÀ-ÿ\s]+$/;
         if (!permitidoNombre.test(nombre)) {
             return res.status(400).json({ msg: "No se permiten caracteres especiales en el nombre" });
         }
+        
         const permitidoCodigo = /^[A-Z0-9]+$/;
         if (!permitidoCodigo.test(codigo)) {
             return res.status(400).json({ msg: "El código debe contener solo letras mayúsculas y números" });
         }
+        
         const nuevaMateria = new Materias({ nombre: nombreMin, codigo, descripcion, creditos });
         await nuevaMateria.save();
         res.status(201).json({ msg: "Materia creada exitosamente", materia: nuevaMateria });

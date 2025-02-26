@@ -7,20 +7,28 @@ import mongoose from "mongoose";
 const crearMatricula = async (req, res) => {
     try {
         const { codigo, descripcion, creditos, id_estudiante, id_materias } = req.body;
-        // Validaciones
-        if (!codigo || !descripcion || !creditos || !id_estudiante || !id_materias) {
-            return res.status(400).json({ msg: "Todos los campos son obligatorios." });
+        
+        // Validaciones de espacios vacíos
+        if (Object.values(req.body).some(value => 
+            value === null || 
+            value === undefined || 
+            (typeof value === 'string' && value.trim() === "")
+        )) {
+            return res.status(400).json({ msg: "Todos los campos son obligatorios y no pueden estar vacíos." });
         }
+        
         // Verificar que el estudiante existe
         const estudiante = await estudiantes.findById(id_estudiante);
         if (!estudiante) {
             return res.status(400).json({ msg: "Estudiante no encontrado." });
         }
+        
         // Verificar que las materias existen
         const materiasEncontradas = await materias.find({ _id: { $in: id_materias } });
         if (materiasEncontradas.length !== id_materias.length) {
             return res.status(400).json({ msg: "Algunas materias no fueron encontradas." });
         }
+        
         // Crear la nueva matrícula
         const nuevaMatricula = new matriculas({
             codigo,
@@ -29,6 +37,7 @@ const crearMatricula = async (req, res) => {
             estudiante: estudiante._id,
             materia: materiasEncontradas.map(materia => materia._id)
         });
+        
         await nuevaMatricula.save();
         res.status(200).json({ msg: "Matrícula creada con éxito." });
     } catch (error) {
