@@ -42,10 +42,19 @@ const CrearEstudiante = async (req, res) => {
 const VerEstudiante = async (req, res) => {
     try {
         const listaEstudiantes = await estudiantes.find().select("-createdAt -updatedAt -__v");
-        res.json(listaEstudiantes);
+
+        // Formatear la fecha antes de enviarla al frontend
+        const estudiantesFormateados = listaEstudiantes.map(estudiante => ({
+            ...estudiante.toObject(), // Convertir el documento de Mongoose a un objeto JS
+            fecha_nacimiento: estudiante.fecha_nacimiento 
+                ? new Date(estudiante.fecha_nacimiento).toISOString().split('T')[0] 
+                : null
+        }));
+
+        res.json(estudiantesFormateados);
     } catch (error) {
-        res.status(500).json({ msg: "Hubo un error al mostrar los estudiantes", error });
-    }
+        res.status(500).json({ msg: "Hubo un error al mostrar los estudiantes", error });
+    }
 };
 
 const detalleEstudiante = async (req, res) => {
