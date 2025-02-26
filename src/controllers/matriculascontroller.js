@@ -29,6 +29,16 @@ const crearMatricula = async (req, res) => {
             return res.status(400).json({ msg: "Algunas materias no fueron encontradas." });
         }
         
+        // Verificar si el estudiante ya está registrado en alguna de las materias
+        const matriculasExistentes = await matriculas.find({ 
+            estudiante: id_estudiante, 
+            materia: { $in: id_materias } 
+        });
+        
+        if (matriculasExistentes.length > 0) {
+            return res.status(400).json({ msg: "El estudiante ya está registrado en una o más de las materias seleccionadas." });
+        }
+        
         // Crear la nueva matrícula
         const nuevaMatricula = new matriculas({
             codigo,
@@ -45,6 +55,7 @@ const crearMatricula = async (req, res) => {
         res.status(500).json({ msg: "Error interno del servidor." });
     }
 };
+
 
 const verMatricula = async (req, res) => {
     try {
