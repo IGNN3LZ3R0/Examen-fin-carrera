@@ -1,5 +1,5 @@
 config:
-  target: "http://localhost:3000/caso1"  # ⚠️ Cambia si usas otro puerto o dominio
+  target: "https://examen-fin-carrera-ou8f.onrender.com/caso1"
   phases:
     - duration: 60
       arrivalRate: 10  # 10 usuarios por segundo
@@ -10,6 +10,9 @@ config:
     - duration: 60
       arrivalRate: 50  # 50 usuarios por segundo
       name: "Carga alta"
+
+  http:
+    timeout: 20  # Máximo 20 segundos de espera por respuesta
 
 scenarios:
   - flow:
