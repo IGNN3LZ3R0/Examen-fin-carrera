@@ -1,0 +1,83 @@
+config:
+  target: "http://localhost:3000/caso1"  # ⚠️ Cambia si usas otro puerto o dominio
+  phases:
+    - duration: 60
+      arrivalRate: 10  # 10 usuarios por segundo
+      name: "Carga baja"
+    - duration: 120
+      arrivalRate: 20  # 20 usuarios por segundo
+      name: "Carga media"
+    - duration: 60
+      arrivalRate: 50  # 50 usuarios por segundo
+      name: "Carga alta"
+
+scenarios:
+  - flow:
+      - get:
+          url: "/matriculas/bienvenido"
+      - post:
+          url: "/usuario/registro"
+          json:
+            email: "testuser@example.com"
+            password: "123456"
+
+  - flow:
+      - post:
+          url: "/usuario/login"
+          json:
+            email: "testuser@example.com"
+            password: "123456"
+      - get:
+          url: "/estudiantes/ver"
+          headers:
+            Authorization: "Bearer {{ token }}"
+      - get:
+          url: "/estudiantes/ver/1"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+  - flow:
+      - post:
+          url: "/materias/crear"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            nombre: "Matemáticas"
+            profesor: "Juan Pérez"
+      - get:
+          url: "/materias/ver"
+          headers:
+            Authorization: "Bearer {{ token }}"
+      - put:
+          url: "/materias/actualizar/1"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            nombre: "Matemáticas Avanzadas"
+      - delete:
+          url: "/materias/eliminar/1"
+          headers:
+            Authorization: "Bearer {{ token }}"
+
+  - flow:
+      - post:
+          url: "/matriculas/crear"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            estudianteId: 1
+            materiaId: 1
+      - get:
+          url: "/matriculas/ver"
+          headers:
+            Authorization: "Bearer {{ token }}"
+      - put:
+          url: "/matriculas/actualizar/1"
+          headers:
+            Authorization: "Bearer {{ token }}"
+          json:
+            estado: "Aprobado"
+      - delete:
+          url: "/matriculas/eliminar/1"
+          headers:
+            Authorization: "Bearer {{ token }}"

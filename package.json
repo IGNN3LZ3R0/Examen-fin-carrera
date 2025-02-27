@@ -20,6 +20,7 @@
     "mongoose": "^8.10.1"
   },
   "devDependencies": {
+    "artillery": "^2.0.22",
     "nodemon": "^3.1.9"
   },
   "type": "module"

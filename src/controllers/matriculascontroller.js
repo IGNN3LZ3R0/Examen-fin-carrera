@@ -56,15 +56,19 @@ const crearMatricula = async (req, res) => {
     }
 };
 
-
 const verMatricula = async (req, res) => {
     try {
-        const matriculasList = await matriculas.find().select("-createdAt -updatedAt -__v");
+        const matriculasList = await matriculas
+            .find()
+            .populate('estudiante', 'nombre apellido cedula') // Muestra solo estos campos del estudiante
+            .populate('materia', 'nombre codigo creditos') // Muestra solo estos campos de la materia
+            .select("-createdAt -updatedAt -__v"); // Excluir metadatos innecesarios
+
         res.json(matriculasList);
     } catch (error) {
-        console.error("Error al obtener las matrículas:", error); // Imprimir el error para depuración
-        res.status(500).json({ msg: "Lo sentimos, ocurrió un error", error });
-    }
+        console.error("Error al obtener las matrículas:", error);
+        res.status(500).json({ msg: "Lo sentimos, ocurrió un error", error });
+    }
 };
 
 
@@ -72,13 +76,24 @@ const detalleMatricula = async (req, res) => {
     try {
         const { id } = req.params;
         if (!mongoose.Types.ObjectId.isValid(id)) 
-            return res.status(404).json({ msg: "Matrícula no encontrada" });
-        
-        res.status(200).json(await matriculas.findById(id).select("-createdAt -updatedAt -__v"));
+            return res.status(404).json({ msg: "Matrícula no encontrada" });
+
+        const matricula = await matriculas
+            .findById(id)
+            .populate('estudiante', 'nombre apellido cedula')
+            .populate('materia', 'nombre codigo creditos')
+            .select("-createdAt -updatedAt -__v");
+
+        if (!matricula) 
+            return res.status(404).json({ msg: "Matrícula no encontrada" });
+
+        res.status(200).json(matricula);
     } catch (error) {
-        res.status(500).json({ msg: "Ocurrió un error", error });
+        res.status(500).json({ msg: "Ocurrió un error", error });
     }
 };
+
+
 
 const actualizarMatricula = async (req, res) => {
     try {
