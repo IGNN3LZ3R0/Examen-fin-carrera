@@ -1,57 +1,51 @@
-import mongoose, { Schema, model } from 'mongoose';
-import matriculaModel from './matricula.js';
-
+import mongoose, {Schema,model} from 'mongoose'
 const estudianteSchema = new Schema({
-    nombre: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 25
+    nombre:{
+        type:String,
+        require:true,
+        trim:true,
+        maxlength : 25
     },
-    apellido: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 25
+    apellido:{
+        type:String,
+        require:true,
+        trim:true,
+        maxlength : 25
     },
-    cedula: {
-        type: String,
-        required: true,
-        trim: true,
-        maxlength: 10
+    cedula:{
+        type:String,
+        require:true,
+        trim:true,
+        maxlenght:10
     },
-    fecha_nacimiento: {
-        type: Date,
-        required: true
+    fecha_nacimiento:{
+        type:Date,
+        require:true,
+        maxlenght:50
     },
-    ciudad: {
-        type: String,
-        required: true,
-        maxlength: 25
+    ciudad:{
+        type:String,
+        require:true,
+        maxlenght:25,
     },
-    direccion: {
-        type: String,
-        required: true,
-        maxlength: 50
+    direccion:{
+        type:String,
+        require:true,
+        maxlenght:50
     },
-    telefono: {
-        type: String,
-        required: true,
-        maxlength: 10
+    telefono:{
+        type:String,
+        require:true,
+        maxlenght:10
     },
-    email: {
-        type: String,
-        required: true,
-        maxlength: 30
+    email:{
+        type:String,
+        require:true,
+        maxlenght:30
     }
-}, {
-    timestamps: true
-});
+},{
+    timestamps:true
+})
 
 
-estudianteSchema.pre('deleteOne', { document: true, query: false }, async function (next) {
-    await matriculaModel.deleteMany({ estudiante: this._id });
-    next();
-});
-
-export default model('estudiantes', estudianteSchema);
+export default model('estudiantes',estudianteSchema)

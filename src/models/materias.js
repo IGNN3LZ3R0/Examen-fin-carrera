@@ -1,34 +1,26 @@
 import mongoose, { Schema, model } from "mongoose";
-import matriculaModel from './matricula.js';
 
-const materiaSchema = new Schema({
+const materias_Schema = new Schema({
     nombre: {
         type: String,
-        required: true,
+        require: true,
         maxlength: 50
     },
     codigo: {
         type: String,
-        required: true,
-        maxlength: 10
+        require: true,
+        maxlenght: 10
     },
     descripcion: {
         type: String,
-        required: true,
-        maxlength: 50
+        require: true,
+        maxlenght: 50
     },
     creditos: {
         type: Number,
-        required: true
+        require: true
     }
 }, {
     timestamps: true
-});
-
-
-materiaSchema.pre('deleteOne', { document: true, query: false }, async function (next) {
-    await matriculaModel.deleteMany({ materia: this._id });
-    next();
-});
-
-export default model("materias", materiaSchema);
+})
+export default model("materias", materias_Schema)
