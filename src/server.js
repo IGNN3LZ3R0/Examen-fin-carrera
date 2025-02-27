@@ -16,7 +16,7 @@ console.log("JWT_SECRET:", process.env.JWT_SECRET);
 app.set('port',process.env.port || 3000)
 // Configuración específica de CORS
 const corsOptions = {
-    origin: 'https://frontend-plantilla-1.onrender.com/', // Reemplaza con el dominio de tu frontend
+    origin: 'https://frontend-plantilla-1.onrender.com', // Reemplaza con el dominio de tu frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Cabeceras permitidas
   };
