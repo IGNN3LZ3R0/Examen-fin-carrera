@@ -1,5 +1,6 @@
 import mongoose, { Schema, model } from "mongoose";
-const matriculasSchema = new Schema({
+
+const matriculaSchema = new Schema({
     codigo: {
         type: String,
         required: true,
@@ -15,16 +16,17 @@ const matriculasSchema = new Schema({
         required: true
     },
     estudiante: {
-        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
-        ref: 'estudiantes', // Nombre del modelo al que se refiere
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'estudiantes',
         required: true
     },
-    materia: [{
-        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
-        ref: 'materias', // Nombre del modelo al que se refiere
+    materia: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'materias',
         required: true
-    }]
+    }
 }, {
     timestamps: true
 });
-export default model("matriculas", matriculasSchema);
+
+export default model("matriculas", matriculaSchema);
