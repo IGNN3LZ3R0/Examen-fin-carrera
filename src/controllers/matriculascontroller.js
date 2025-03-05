@@ -1,6 +1,6 @@
 import matriculas from "../models/matriculas.js";
 import estudiantes from "../models/estudiantes.js";
-import materias from "../models/materias.js";
+import materias from "../models/auditorios.js";
 import mongoose from "mongoose";
 
 

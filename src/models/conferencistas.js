@@ -1,63 +1,59 @@
-
-import mongoose, {Schema,model} from 'mongoose'
+import mongoose, { Schema, model } from 'mongoose';
 const conferencistasSchema = new Schema({
-    nombre:{
-        type:String,
-        require:true,
-        trim:true,
-        maxlength : 25
+    nombre: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 25
     },
-    apellido:{
-        type:String,
-        require:true,
-        trim:true,
-        maxlength : 25
+    apellido: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 25
     },
-    cedula:{
-        type:String,
-        require:true,
-        trim:true,
-        maxlenght:10
+    cedula: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 10 
     },
-    genero:{
-        type:String,
-        require:true,
-        trim:true,
-        maxlenght:10
+    genero: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 10 
     },
-    ciudad:{
-        type:String,
-        require:true,
-        maxlenght:25,
+    ciudad: {
+        type: String,
+        required: true,
+        maxlength: 25 
     },
-    direccion:{
-        type:String,
-        require:true,
-        maxlenght:50
+    direccion: {
+        type: String,
+        required: true,
+        maxlength: 50 
     },
-    fecha_nacimiento:{
-        type:Date,
-        require:true,
-        maxlenght:50
+    fecha_nacimiento: {
+        type: Date,
+        required: true,
     },
-    telefono:{
-        type:String,
-        require:true,
-        maxlenght:10
+    telefono: {
+        type: String,
+        required: true,
+        maxlength: 10 
     },
-    email:{
-        type:String,
-        require:true,
-        maxlenght:30
+    email: {
+        type: String,
+        required: true,
+        maxlength: 30 
     },
-    empresa:{
-        type:String,
-        require:true,
-        maxlenght:50
+    empresa: {
+        type: String,
+        required: true, 
+        maxlength: 50 
     }
-},{
-    timestamps:true
-})
-
-
-export default model('conferencistas',conferencistasSchema)
+}, {
+    timestamps: true
+});
+export default model('conferencistas', conferencistasSchema);
