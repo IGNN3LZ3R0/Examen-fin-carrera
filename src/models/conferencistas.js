@@ -46,7 +46,7 @@ const conferencistasSchema = new Schema({
     email: {
         type: String,
         required: true,
-        maxlength: 30 
+        maxlength: 50 
     },
     empresa: {
         type: String,
