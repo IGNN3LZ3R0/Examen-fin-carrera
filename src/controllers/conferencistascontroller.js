@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import conferencistas from "../models/conferencistas.js"; // Cambiado a conferencistas
 import Usuario from "../models/usuario.js";
-
 const CrearConferencista = async (req, res) => {
     const { nombre, apellido, cedula, fecha_nacimiento, ciudad, direccion, telefono, email, genero, empresa } = req.body;
     
@@ -28,8 +27,7 @@ const CrearConferencista = async (req, res) => {
     
     const VerificarTelefono = await conferencistas.findOne({ telefono });
     if (VerificarTelefono) 
-        return res.status(400).json({ msg: "Lo sentimos, el teléfono ya se encuentra registrado" });
-    
+        return res.status(400).json({ msg: "Lo sentimos, el teléfono ya se encuentra registrado" })
     // BDD
     const nuevoConferencista = new conferencistas(req.body);
     await nuevoConferencista.save();
@@ -37,7 +35,6 @@ const CrearConferencista = async (req, res) => {
     // Respuesta
     res.status(200).json({ msg: "El conferencista fue registrado exitosamente" });
 };
-
 const VerConferencistas = async (req, res) => {
     try {
         const listaConferencistas = await conferencistas.find().select("-createdAt -updatedAt -__v");
