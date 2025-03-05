@@ -4,13 +4,13 @@ const conferencistasSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: 25
+        maxlength: 50
     },
     apellido: {
         type: String,
         required: true,
         trim: true,
-        maxlength: 25
+        maxlength: 50
     },
     cedula: {
         type: String,
@@ -22,17 +22,17 @@ const conferencistasSchema = new Schema({
         type: String,
         required: true,
         trim: true,
-        maxlength: 10 
+        maxlength: 20 
     },
     ciudad: {
         type: String,
         required: true,
-        maxlength: 25 
+        maxlength: 50 
     },
     direccion: {
         type: String,
         required: true,
-        maxlength: 50 
+        maxlength: 100 
     },
     fecha_nacimiento: {
         type: Date,
@@ -51,7 +51,7 @@ const conferencistasSchema = new Schema({
     empresa: {
         type: String,
         required: true, 
-        maxlength: 50 
+        maxlength: 80 
     }
 }, {
     timestamps: true
