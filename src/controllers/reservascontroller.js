@@ -1,6 +1,6 @@
 import Reservas from "../models/reservas.js";
-import Conferencistas from "../models/conferencistas.js";
-import Auditorios from "../models/auditorios.js";
+import conferencistas from "../models/conferencistas.js";
+import auditorios from "../models/auditorios.js";
 import mongoose from "mongoose";
 const crearReserva = async (req, res) => {
     try {
@@ -14,12 +14,12 @@ const crearReserva = async (req, res) => {
             return res.status(400).json({ msg: "Todos los campos son obligatorios y no pueden estar vacíos." });
         }
         // Verificar que el conferencista existe
-        const conferencista = await Conferencistas.findById(id_conferencista);
+        const conferencista = await conferencistas.findById(id_conferencista);
         if (!conferencista) {
             return res.status(400).json({ msg: "Conferencista no encontrado." });
         }
         // Verificar que los auditorios existen
-        const auditoriosEncontrados = await Auditorios.find({ _id: { $in: id_auditorios } });
+        const auditoriosEncontrados = await auditorios.find({ _id: { $in: id_auditorios } });
         if (auditoriosEncontrados.length !== id_auditorios.length) {
             return res.status(400).json({ msg: "Algunos auditorios no fueron encontrados." });
         }
