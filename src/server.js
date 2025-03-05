@@ -26,9 +26,9 @@ app.get('/', (req, res) => {
     res.send("Server on");
 });
 // Agrupar las rutas bajo el mismo prefijo
-app.use("/caso5/usuarios", routerusuario);
-app.use("/caso5/auditorios", routerauditorios);
-app.use("/caso5/conferencistas", routerconferencistas);
-app.use("/caso5/reservas", routerreservas); // Cambiado 'matriculas' a 'reservas'
+app.use("/caso5", routerusuario);
+app.use("/caso5", routerauditorios);
+app.use("/caso5", routerconferencistas);
+app.use("/caso5", routerreservas); // Cambiado 'matriculas' a 'reservas'
 // Exportar la instancia de express por medio de app
 export default app;
