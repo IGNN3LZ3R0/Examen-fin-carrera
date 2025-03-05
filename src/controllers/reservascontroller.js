@@ -2,6 +2,8 @@ import reservas from "../models/reservas.js";
 import conferencistas from "../models/conferencistas.js";
 import auditorios from "../models/auditorios.js";
 import mongoose from "mongoose";
+
+
 const crearReserva = async (req, res) => {
     try {
         const { codigo, descripcion, id_conferencista, id_auditorios } = req.body;
@@ -12,6 +14,10 @@ const crearReserva = async (req, res) => {
             (typeof value === 'string' && value.trim() === "")
         )) {
             return res.status(400).json({ msg: "Todos los campos son obligatorios y no pueden estar vacíos." });
+        }
+        // Validar que el ID del conferencista sea un ObjectId válido
+        if (!mongoose.Types.ObjectId.isValid(id_conferencista)) {
+            return res.status(400).json({ msg: "ID de conferencista no válido." });
         }
         // Verificar que el conferencista existe
         const conferencista = await conferencistas.findById(id_conferencista);
@@ -37,6 +43,7 @@ const crearReserva = async (req, res) => {
         res.status(500).json({ msg: "Error interno del servidor." });
     }
 };
+
 const verReservas = async (req, res) => {
     try {
         const reservasList = await reservas
