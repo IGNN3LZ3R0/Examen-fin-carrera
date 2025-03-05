@@ -9,7 +9,7 @@ import {
 import verificarJWT from '../middlewares/verificarJWT.js';
 const router = express.Router();
 // Ruta de bienvenida
-router.get('/matriculas/bienvenido', verificarJWT, (req, res) => {
+router.get('/auditorio/bienvenido', verificarJWT, (req, res) => {
     res.json({ msg: `Bienvenido - ${req.user.nombre}` });
 });
 // Rutas CRUD para auditorios
