@@ -16,7 +16,7 @@ const crearReserva = async (req, res) => {
             return res.status(400).json({ msg: "Todos los campos son obligatorios y no pueden estar vacíos." });
         }
         // Verificar que el conferencista existe
-        const conferencista = await conferencistas.findById(conferencistaId);
+        const conferencista = await conferencistas.findById(id_conferencista);
         if (!conferencista) {
             return res.status(400).json({ msg: "Conferencista no encontrado." });
         }
