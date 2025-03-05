@@ -1,5 +1,5 @@
 config:
-  target: "https://examen-fin-carrera-ou8f.onrender.com/caso1"
+  target: "https://frontend-plantilla-1.onrender.com/"
   phases:
     - duration: 60
       arrivalRate: 10  # 10 usuarios por segundo

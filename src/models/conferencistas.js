@@ -1,6 +1,6 @@
 
 import mongoose, {Schema,model} from 'mongoose'
-const estudianteSchema = new Schema({
+const conferencistasSchema = new Schema({
     nombre:{
         type:String,
         require:true,
@@ -19,10 +19,11 @@ const estudianteSchema = new Schema({
         trim:true,
         maxlenght:10
     },
-    fecha_nacimiento:{
-        type:Date,
+    genero:{
+        type:String,
         require:true,
-        maxlenght:50
+        trim:true,
+        maxlenght:10
     },
     ciudad:{
         type:String,
@@ -31,6 +32,11 @@ const estudianteSchema = new Schema({
     },
     direccion:{
         type:String,
+        require:true,
+        maxlenght:50
+    },
+    fecha_nacimiento:{
+        type:Date,
         require:true,
         maxlenght:50
     },
@@ -43,10 +49,15 @@ const estudianteSchema = new Schema({
         type:String,
         require:true,
         maxlenght:30
+    },
+    empresa:{
+        type:String,
+        require:true,
+        maxlenght:50
     }
 },{
     timestamps:true
 })
 
 
-export default model('estudiantes',estudianteSchema)
+export default model('conferencistas',conferencistasSchema)

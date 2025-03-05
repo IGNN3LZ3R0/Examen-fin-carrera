@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import cors from 'cors';
 import routerusuario from "./routers/usuarioroutes.js"
 import routermateria from "./routers/materiasroutes.js"
-import routerestudiantes from './routers/estudiantesroutes.js';
+import routerconferencitas from './routers/conferencistasroutes.js';
 import routermatriculas from './routers/matriculasroutes.js'
 
 // Inicializaciones
@@ -30,10 +30,10 @@ app.get('/',(req,res)=>{
     res.send("Server on")
 })
 
-app.use("/caso1", routerusuario)
-app.use("/caso1", routermateria)
-app.use("/caso1", routerestudiantes)
-app.use("/caso1", routermatriculas)
+app.use("/caso5", routerusuario)
+app.use("/caso5", routermateria)
+app.use("/caso5", routerconferencitas )
+app.use("/caso5", routermatriculas)
 
 
 
