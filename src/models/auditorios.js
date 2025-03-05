@@ -14,7 +14,7 @@ const auditoriosSchema = new Schema({
     ubicacion: {
         type: String,
         required: true,
-        maxlength: 10 
+        maxlength: 100 
     },
     capacidad: {
         type: Number, 
