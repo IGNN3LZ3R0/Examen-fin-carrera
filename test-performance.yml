@@ -1,5 +1,5 @@
 config:
-  target: "https://frontend-plantilla-1.onrender.com/"
+  target: "https://examen-fin-carrera-ou8f.onrender.com"
   phases:
     - duration: 60
       arrivalRate: 10  # 10 usuarios por segundo
@@ -10,77 +10,82 @@ config:
     - duration: 60
       arrivalRate: 50  # 50 usuarios por segundo
       name: "Carga alta"
-
   http:
     timeout: 20  # Máximo 20 segundos de espera por respuesta
-
 scenarios:
   - flow:
       - get:
-          url: "/matriculas/bienvenido"
+          url: "/caso5/reserva/bienvenido"
       - post:
-          url: "/usuario/registro"
+          url: "/caso5/usuarios/registro"
           json:
             email: "testuser@example.com"
             password: "123456"
-
   - flow:
       - post:
-          url: "/usuario/login"
+          url: "/caso5/usuarios/login"
           json:
             email: "testuser@example.com"
             password: "123456"
       - get:
-          url: "/estudiantes/ver"
+          url: "/caso5/reserva/ver"
           headers:
             Authorization: "Bearer {{ token }}"
       - get:
-          url: "/estudiantes/ver/1"
+          url: "/caso5/reserva/ver/1"
           headers:
             Authorization: "Bearer {{ token }}"
-
   - flow:
       - post:
-          url: "/materias/crear"
+          url: "/caso5/conferencista/crear"
           headers:
             Authorization: "Bearer {{ token }}"
           json:
-            nombre: "Matemáticas"
-            profesor: "Juan Pérez"
+            nombre: "Juan Pérez"
+            apellido: "Gómez"
+            cedula: "123456789"
+            genero: "Masculino"
+            ciudad: "Ciudad de México"
+            direccion: "Calle Falsa 123"
+            fecha_nacimiento: "1990-01-01"
+            telefono: "5555555555"
+            email: "juan.perez@example.com"
+            empresa: "Empresa XYZ"
       - get:
-          url: "/materias/ver"
+          url: "/caso5/conferencista/ver"
           headers:
             Authorization: "Bearer {{ token }}"
       - put:
-          url: "/materias/actualizar/1"
+          url: "/caso5/conferencista/actualizar/1"
           headers:
             Authorization: "Bearer {{ token }}"
           json:
-            nombre: "Matemáticas Avanzadas"
+            nombre: "Juan Pérez Actualizado"
       - delete:
-          url: "/materias/eliminar/1"
+          url: "/caso5/conferencista/eliminar/1"
           headers:
             Authorization: "Bearer {{ token }}"
-
   - flow:
       - post:
-          url: "/matriculas/crear"
+          url: "/caso5/reserva/crear"
           headers:
             Authorization: "Bearer {{ token }}"
           json:
-            estudianteId: 1
-            materiaId: 1
+            codigo: "RES001"
+            descripcion: "Reserva para la conferencia de tecnología"
+            conferencista: "ID_DEL_CONFERENCISTA"  # Reemplaza con un ID de conferencista existente
+            auditorio: ["ID_DEL_AUDITORIO_1", "ID_DEL_AUDITORIO_2"]  # Reemplaza con IDs de auditorios existentes
       - get:
-          url: "/matriculas/ver"
+          url: "/caso5/reserva/ver"
           headers:
             Authorization: "Bearer {{ token }}"
       - put:
-          url: "/matriculas/actualizar/1"
+          url: "/caso5/reserva/actualizar/1"
           headers:
             Authorization: "Bearer {{ token }}"
           json:
-            estado: "Aprobado"
+            descripcion: "Reserva actualizada para la conferencia de ciencia"
       - delete:
-          url: "/matriculas/eliminar/1"
+          url: "/caso5/reserva/eliminar/1"
           headers:
             Authorization: "Bearer {{ token }}"
