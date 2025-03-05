@@ -1,5 +1,5 @@
 import mongoose, { Schema, model } from "mongoose";
-const matriculasSchema = new Schema({
+const reservasSchema = new Schema({
     codigo: {
         type: String,
         required: true,
@@ -10,21 +10,17 @@ const matriculasSchema = new Schema({
         required: true,
         maxlength: 50
     },
-    creditos: {
-        type: Number,
+    conferencista: {
+        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
+        ref: 'conferencistas', // Cambiado a 'conferencistas' para que coincida con el modelo correcto
         required: true
     },
-    estudiante: {
+    auditorio: [{
         type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
-        ref: 'estudiantes', // Nombre del modelo al que se refiere
-        required: true
-    },
-    materia: [{
-        type: mongoose.Schema.Types.ObjectId, // Usar ObjectId para referencia
-        ref: 'materias', // Nombre del modelo al que se refiere
+        ref: 'auditorios', // Cambiado a 'auditorios' para que coincida con el modelo correcto
         required: true
     }]
 }, {
     timestamps: true
 });
-export default model("matriculas", matriculasSchema);
+export default model("reservas", reservasSchema);
