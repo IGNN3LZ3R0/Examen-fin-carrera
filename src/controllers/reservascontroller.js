@@ -15,12 +15,14 @@ const crearReserva = async (req, res) => {
         )) {
             return res.status(400).json({ msg: "Todos los campos son obligatorios y no pueden estar vacíos." });
         }
+        // Eliminar espacios en blanco del ID del conferencista
+        const conferencistaId = id_conferencista.trim();
         // Validar que el ID del conferencista sea un ObjectId válido
-        if (!mongoose.Types.ObjectId.isValid(id_conferencista)) {
+        if (!mongoose.Types.ObjectId.isValid(conferencistaId)) {
             return res.status(400).json({ msg: "ID de conferencista no válido." });
         }
         // Verificar que el conferencista existe
-        const conferencista = await conferencistas.findById(id_conferencista);
+        const conferencista = await conferencistas.findById(conferencistaId);
         if (!conferencista) {
             return res.status(400).json({ msg: "Conferencista no encontrado." });
         }
