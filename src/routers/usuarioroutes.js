@@ -6,8 +6,8 @@ import {
 
 const router = Router()
 
-router.post('/usuario/login',login)//OK
-router.post('/usuario/registro',registro) //OK
+router.post('/usuarios/login',login)//OK
+router.post('/usuarios/registro',registro) //OK
 
 
 export default router

@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import routerusuario from "./routers/usuarioroutes.js";
 import routerauditorios from "./routers/auditoriosroutes.js";
-import routerconferencistas from './routers/conferencistasroutes.js'; // Corregido el nombre del import
+import routerconferencistas from './routers/conferencistasroutes.js'; 
 import routerreservas from './routers/reservasroutes.js';
 // Inicializaciones
 const app = express();
@@ -29,6 +29,6 @@ app.get('/', (req, res) => {
 app.use("/caso5/usuarios", routerusuario);
 app.use("/caso5/auditorios", routerauditorios);
 app.use("/caso5/conferencistas", routerconferencistas);
-app.use("/caso5/matriculas", routerreservas);
+app.use("/caso5/reservas", routerreservas); // Cambiado 'matriculas' a 'reservas'
 // Exportar la instancia de express por medio de app
 export default app;
